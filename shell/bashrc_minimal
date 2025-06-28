@@ -1,0 +1,61 @@
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+ya () { yt-dlp -x --audio-format mp3 --output '%(upload_date)s - %(uploader)s - %(title)s.%(ext)s' "$1" ; };
+yv () { yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4' --output '%(upload_date)s - %(uploader)s - %(title)s.%(ext)s' "$1" ; };
+yy () { ya "$1" ; yv "$1" ; };
+
+export PATH="$PATH:~/bin"
+
+EDITOR=nvim
+
+function echo_color() {
+  local color="$1"
+  printf "${color}$2\033[0m\n"
+}
+echo_color "\033[0;90m" "Once men turned their thinking over to machines "
+echo_color "\033[0;90m" "in the hope that this wold set them free,"
+echo_color "\033[0;90m" "but that only permitted "
+echo_color "\033[0;90m" "other men with machines to enslave them."
+
+# aliases 
+
+if [ "$(uname)" == "Linux" ]; then
+  alias open='xdg-open'
+fi
+alias c=clear
+alias v=nvim
+alias vim=nvim
+alias ta="tmux a "
+alias ll='ls -alFh'
+alias l='ls -alFh'
+alias la='ls -A'
+
+mc () { mkdir $@; cd $1; };
+
+# NVM
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+set -o vi
+
+HISTSIZE=
+HISTFILESIZE=
+HISTCONTROL=ignoreboth
+shopt -s histappend
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+PS1='\n\[\e[0;90m\](\W) \$ \[\e[0m\]'
+
+
+export TZ="Europe/Madrid"

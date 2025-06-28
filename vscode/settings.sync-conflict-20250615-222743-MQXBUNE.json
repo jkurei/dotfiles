@@ -1,0 +1,210 @@
+{
+  // +++++++++++++++++++++++++++++++++++++++++++++++
+  // cargo culted from mac
+  "telemetry.telemetryLevel": "off",
+  "explorer.autoRevealExclude": {
+    "**/node_modules": true,
+    "**/bower_components": true
+  },
+  "editor.fontLigatures": true,
+  "window.restoreWindows": "none",
+  "workbench.editor.decorations.badges": true,
+  "workbench.editor.untitled.hint": "hidden",
+  "workbench.startupEditor": "newUntitledFile",
+  "zenMode.hideStatusBar": false,
+  "terminal.integrated.scrollback": 999999,
+  "terminal.integrated.persistentSessionScrollback": 1000,
+  "editor.minimap.showSlider": "always",
+  "editor.minimap.side": "left",
+
+  "workbench.editor.highlightModifiedTabs": true,
+
+  "window.title": "${rootName}${separator}${profileName}",
+  "window.commandCenter": false,
+  "workbench.layoutControl.enabled": false,
+
+  "editor.autoClosingBrackets": "never",
+  "editor.autoClosingOvertype": "never",
+  "editor.autoClosingQuotes": "never",
+  "editor.guides.bracketPairs": "active",
+  "editor.matchBrackets": "never",
+  "explorer.confirmDragAndDrop": false,
+
+  "git.autofetch": true,
+  "update.showReleaseNotes": false,
+
+  // sure bout this?
+  "workbench.list.smoothScrolling": true,
+  "editor.smoothScrolling": true,
+
+  // end cargo culted from mac
+  // +++++++++++++++++++++++++++++++++++++++++++++++
+
+  // +++++++++++++++++++++++++++++++++++++++++++++++
+  // also mostly-cargoculted, for vim
+  "vim.enableNeovim": true,
+  "vim.neovimPath": "/usr/bin/nvim",
+  "vim.useCtrlKeys": false,
+
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // { "before": ["f"], "after": ["/"] },
+    // { "before": ["F"], "after": ["?"] },
+    { "before": ["u"], "commands": ["undo"] },
+    { "before": ["U"], "commands": ["redo"] },
+    { "before": ["<C-r>"], "commands": ["redo"] }
+  ],
+  "vim.leader": ",",
+  "vim.smartcase": true,
+  "vim.textwidth": 120,
+  "vim.useSystemClipboard": true,
+  "workbench.activityBar.location": "top",
+  "workbench.colorTheme": "Nord",
+  "gitlens.plusFeatures.enabled": false,
+  "yaml.schemas": {
+    "file:///home/j/.vscode/extensions/atlassian.atlascode-3.4.22/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+},
+  "atlascode.jira.jqlList": [
+    {
+      "id": "e19d12c1-c0e0-4c1c-9238-392117293bb4",
+      "enabled": true,
+      "name": "My sharecrf Issues",
+      "query": "assignee = currentUser() AND resolution = Unresolved ORDER BY lastViewed DESC",
+      "siteId": "a834002e-2a5f-4b97-9f9c-086fc33c9721",
+      "monitor": true
+    }
+  ],
+  "gitlens.launchpad.indicator.enabled": false,
+  "editor.fontFamily": "'DM Mono Light','Victor Mono','Ubuntu Mono','monospace', monospace",
+  "editor.lineHeight": 1.2,
+  "editor.fontSize": 16,
+
+  //
+  "terminal.integrated.minimumContrastRatio": 7,
+  "workbench.preferredLightColorTheme": "Quiet Light",
+  "workbench.iconTheme": "verdandi",
+  "editor.semanticHighlighting.enabled": true,
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#000000",
+    "statusBar.foreground": "#FFFFFF", // Optional: Set the text color on the status bar
+    "statusBar.border": "#000000" // Optional: Remove the border or match the black color
+  },
+  "database-client.autoSync": true,
+  "editor.minimap.enabled": false,
+
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": {
+          "fontStyle": "italic"
+        }
+      }
+    ]
+  },
+
+  // NOTES
+  "better-comments.tags": [
+    // for titles, separators, sections
+    {
+      "tag": "//",
+      "color": "#333333",
+      "backgroundColor": "transparent",
+      "strikethrough": false,
+      "underline": true,
+      "bold": false,
+      "italic": false
+    },
+
+    // better's notes
+    {
+      "tag": "!",
+      "color": "#FF2D00",
+      "backgroundColor": "transparent",
+      "strikethrough": false,
+      "underline": false,
+      "bold": true,
+      "italic": false
+    },
+    {
+      "tag": "?",
+      "color": "#3498DB",
+      "backgroundColor": "transparent",
+      "strikethrough": false,
+      "underline": false,
+      "bold": true,
+      "italic": false
+    },
+
+    // my notes
+    {
+      "tag": "jj",
+      "color": "black",
+      "backgroundColor": "rgba(255, 225, 150, 0.5)",
+      "strikethrough": false,
+      "underline": false,
+      "bold": true,
+      "italic": true
+    },
+    {
+      "tag": "jj!",
+      "color": "black",
+      "backgroundColor": "#ff2d0075",
+      "strikethrough": false,
+      "underline": false,
+      "bold": true,
+      "italic": false
+    },
+    {
+      "tag": "jj?",
+      "color": "black",
+      "backgroundColor": "#a1068465",
+      "strikethrough": false,
+      "underline": false,
+      "bold": true,
+      "italic": false
+    },
+
+    // to-dos
+    {
+      "tag": "@todo",
+      "color": "#FF6000",
+      "backgroundColor": "#FF8C0015",
+      "strikethrough": false,
+      "underline": false,
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "todo",
+      "color": "#FF6000",
+      "backgroundColor": "#FF8C0015",
+      "strikethrough": false,
+      "underline": false,
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "debug.inlineValues": "on",
+  "git.openRepositoryInParentFolders": "never",
+  "[html]": {
+    "editor.defaultFormatter": "mohd-akram.vscode-html-format"
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "keyboard.dispatch": "keyCode",
+  "roo-cline.allowedCommands": [
+    "npm test",
+    "npm install",
+    "tsc",
+    "git log",
+    "git diff",
+    "git show"
+  ],
+  "explorer.confirmDelete": false,
+  "workbench.editor.pinnedTabsOnSeparateRow": true,
+  "git.confirmSync": false,
+  "chat.commandCenter.enabled": false,
+  "window.menuBarVisibility": "toggle",
+  "window.customTitleBarVisibility": "windowed",
+  "workbench.preferredHighContrastLightColorTheme": "Nord Deep",
+  "terminal.integrated.defaultProfile.osx": "bash"
+}

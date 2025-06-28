@@ -1,0 +1,180 @@
+alias vs=/mnt/c/Users/j/AppData/Local/Programs/Microsoft\ VS\ Code\ Insiders/bin/code-insiders
+
+### ALIASES ### 
+
+alias cp="cp -v"
+alias mv="mv -v"
+alias rm="rm -v"
+alias ..="cd .."
+alias ....="cd ../.."
+alias ......="cd ../../.."
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+if [ "$(uname 2> /dev/null)" != "Linux" ]; then
+  # echo "This is not linux";
+  alias ls='ls -1'
+  alias la='ls -1 -A'
+  alias ll='ls -1 -AlFh'
+else
+  alias ls='ls --color -1'
+  alias la='ls --color -1 -lA'
+  alias ll='ls --color -1 -AlFh'
+fi
+
+alias wanip='dig @resolver4.opendns.com myip.opendns.com +short'
+alias wanip4='dig @resolver4.opendns.com myip.opendns.com +short -4'
+alias wanip6='dig @resolver1.ipv6-sandbox.opendns.com AAAA myip.opendns.com +short -6'
+
+alias ta="tmux a "
+alias vo="nvim -O"
+alias vp="nvim -p"
+alias v="nvim -p"
+alias vi="nvim -p"
+alias vim="nvim -p"
+alias goyo="nvim -c \"Goyo 120x95\""
+alias b="bat"
+alias vimz="nvim -p ~/.zshrc ~/.zshrc_* && . ~/.zshrc"
+
+case $( uname ) in
+"Linux")
+  alias open="xdg-open"
+  alias o="xdg-open"
+  alias wvim="nvim-wrapper"
+  alias wvimdiff="nvim-wrapper -d "
+  alias qvim="nvim-qt"
+  ;;
+"Darwin")
+  alias o="open"
+  alias oa="open -a"
+  alias openapp="open -a"
+  alias gvim="vimr"
+  alias typora="open -a typora "
+  ;;
+esac
+
+# alias ga='git add'
+alias go='git checkout'
+alias gs='git status'
+alias gl='git pull'
+alias gu='git push'
+alias gc='git commit'
+alias gcm='git commit -m'
+
+
+alias prettyjson='python -m json.tool'
+function prettyinplace () {
+  cat "$1" | python -m json.tool > ".tmp.pretty.$1"
+  cat ".tmp.pretty.$1" > "$1"
+  rm ".tmp.pretty.$1"
+}
+
+function whohasport () {
+  sudo lsof -i -P | grep LISTEN | grep :$1
+}
+
+mc () { mkdir -p $@ && cd $1; };
+
+function mkcd () {
+  mkdir -p "$1";
+  cd "$1";
+}
+
+# should only be on mac
+alias typora="open -a typora "
+
+# for iterm
+alias itmux='tmux -CC'
+alias ita='tmux -CC attach'
+
+######################################################################
+# SET-TITLE
+# https://unix.stackexchange.com/questions/177572/how-to-rename-terminal-tab-title-in-gnome-terminal
+
+function set-title() {
+  if [[ -z "$ORIG" ]]; then
+    ORIG=$PS1
+  fi
+  TITLE="\[\e]2;$*\a\]"
+  PS1=${ORIG}${TITLE}
+}
+
+#####################################################################
+# JPG
+
+compresstojpg () { echo "compressing at 70% to .c.jpg" ; sips -s format jpeg -s formatOptions 70 "${1}" --out "${1%.*}.c.jpg"; }
+converttojpg () { echo "just converting to jpg" ; sips -s format jpeg "${1}" --out "${1%.*}.jpg"; }
+
+#####################################################################
+# MEMORY HOGS
+# How much memory is Chrome using right now?
+
+alias bravemem="ps -ev | grep -i brave | awk '{print \$12}' | awk '{for(i=1;i<=NF;i++)s+=\$i}END{print s}'"
+alias chromemem="ps -ev | grep -i chrome | awk '{print \$12}' | awk '{for(i=1;i<=NF;i++)s+=\$i}END{print s}'"
+alias firefoxmem="ps -ev | grep -i firefox | awk '{print \$12}' | awk '{for(i=1;i<=NF;i++)s+=\$i}END{print s}'"
+
+mem () {
+  ps -ev | grep -i $1 | awk '{print $12}' | awk '{for(i=1;i<=NF;i++)s+=$i}END{print s}' ;
+};
+
+#####################################################################
+# MAC-LIKE OPEN IN LINUX
+
+if [ "$(uname 2> /dev/null)" != "Linux" ]; then
+  # echo "This is not linux";
+else
+  # echo "This is Linux";
+  alias open='xdg-open';
+  alias o='xdg-open';
+fi
+
+#####################################################################
+# YOUTUBE
+
+function ya () {
+  yt-dlp -x --audio-format mp3 \
+    --output '%(upload_date)s - %(uploader)s - %(title)s [%(id)s].%(ext)s' "$@"
+}
+
+function yv () {
+  yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4' \
+    --output '%(upload_date)s - %(uploader)s - %(title)s [%(id)s].%(ext)s' "$1"
+}
+
+function yy () {
+  ya "$1"
+  yv "$1"
+}
+
+function yv1080 () {
+  yt-dlp -f 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/mp4' \
+    --output '%(upload_date)s - %(uploader)s - %(title)s [%(id)s].%(ext)s' \
+    "$1" 
+}
+
+#####################################################################
+# PROGRAMING TOOLS (?)
+#
+# WTF:
+# λ jmbp handyman → λ git master → git pull
+# grep: src: No such file or directory
+
+f () { find . -iname "$1"; }
+g () { grep "$1" -rniI . --exclude-dir=node_modules --exclude-dir=bower_components --exclude-dir='\.git' --exclude='*-lock\.json' --exclude='*bundle\.js*' --exclude='*\.min\.*' --exclude='*compiled.js*' ; }
+ga () { g "$@"; }
+
+### f () { find . -iname $1 ; }
+### fa () { find . -iname $1 ; }
+### fs () { find src -iname $1 ; }
+
+#####################################################################
+# KEYBOARD
+
+# esc_caps (only for linux, not great)
+# alias switch_esc_caps='/usr/bin/setxkbmap -option "caps:swapescape"'
+# [ -f /usr/bin/setxkbmap ] && switch_esc_caps
+#
+
+alias plasmarestart='kquitapp5 plasmashell || killall plasmashell && kstart5 plasmashell'

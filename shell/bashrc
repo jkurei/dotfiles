@@ -1,0 +1,123 @@
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+set -o vi
+
+EDITOR=nvim
+
+# Eternal bash history.
+# ---------------------
+# Undocumented feature which sets the size to "unlimited".
+# http://stackoverflow.com/questions/9457233/unlimited-bash-history
+export HISTFILESIZE=
+export HISTSIZE=
+export HISTTIMEFORMAT="[%F %T] "
+# Change the file location because certain bash sessions truncate .bash_history file upon close.
+# http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
+export HISTFILE=~/.bash_eternal_history
+# Force prompt to write history after every command.
+# http://superuser.com/questions/20900/bash-history-loss
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+if [ "$(uname)" == "Linux" ]; then
+  alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+  # enable programmable completion features (you don't need to enable
+  # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+  # sources /etc/bash.bashrc).
+  if ! shopt -oq posix; then
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+      . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+      . /etc/bash_completion
+    fi
+  fi
+  
+  alias ls='ls --color -G'
+fi
+
+alias ll='ls -alFh'
+alias l='ls -alFh'
+alias la='ls -A'
+alias ls='ls -G'
+
+alias ta="tmux a "
+# alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias wanip='curl curlmyip.com'
+
+mc () { mkdir $@; cd $1; };
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+alias prettyjson='python -m json.tool'
+
+# manipulate files verbosely (print log of what happened)
+alias cp="cp -v"
+alias mv="mv -v"
+alias rm="rm -v"
+
+alias cdd="cd .."
+alias vim=nvim
+
+### mac-like open
+if [ "$(uname)" == "Linux" ]; then
+  alias open='xdg-open'
+fi
+
+### Youtube DL ###
+  
+ya () { yt-dlp -x --audio-format mp3 --output '%(upload_date)s - %(uploader)s - %(title)s.%(ext)s' "$1" ; };
+yv () { yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4' --output '%(upload_date)s - %(uploader)s - %(title)s.%(ext)s' "$1" ; };
+  
+yy () { ya "$1" ; yv "$1" ; };
+
+# check if shell is interactive, to avoid "$TERM not set" bugs when loading the graphical shell (go figure)
+if [[ $- == *i* ]]; then
+  PS1='\n\[\e[0;32m\]\h:\w\n>\[\e[0m\] '
+fi
+
+### PATH ###
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+
+export PATH=~/.npm-global/bin:$PATH
+export PATH="$HOME/.npm-packages/bin:$PATH"
+export PATH="$PATH:~/bin"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+## QUOTE
+
+function echo_color() {
+  local color="$1"
+  printf "${color}$2\033[0m\n"
+}
+echo_color "\033[0;90m" "Once men turned their thinking over to machines "
+echo_color "\033[0;90m" "in the hope that this wold set them free,"
+echo_color "\033[0;90m" "but that only permitted "
+echo_color "\033[0;90m" "other men with machines to enslave them."
+
+
+

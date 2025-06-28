@@ -1,0 +1,17 @@
+# https://github.com/denysdovhan/spaceship-prompt/blob/master/docs/Options.md
+
+SPACESHIP_CHAR_PREFIX=""
+SPACESHIP_CHAR_SUFFIX=" "
+SPACESHIP_CHAR_SYMBOL="$>"
+
+SPACESHIP_TIME_SHOW=false
+
+SPACESHIP_HOST_PREFIX="at "
+SPACESHIP_HOST_SHOW=true # != always
+
+SPACESHIP_DIR_TRUNC=2
+
+SPACESHIP_PACKAGE_SHOW=false
+
+SPACESHIP_VI_MODE_INSERT="I"
+SPACESHIP_VI_MODE_NORMAL="N"

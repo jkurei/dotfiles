@@ -1,0 +1,57 @@
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# Functions
+ya() { yt-dlp -x --audio-format mp3 --output '%(upload_date)s - %(uploader)s - %(title)s.%(ext)s' "$1"; }
+yv() { yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4' --output '%(upload_date)s - %(uploader)s - %(title)s.%(ext)s' "$1"; }
+yy() { ya "$1"; yv "$1"; }
+
+mc() { mkdir "$@"; cd "$1"; }
+
+echo_color() {
+  color="$1"
+  text="$2"
+  printf "${color}${text}\033[0m\n"
+}
+
+# Set up PATH and editor
+export PATH="$PATH:$HOME/bin"
+export EDITOR=nvim
+
+# Cool quote
+echo_color "\033[0;90m" "Once men turned their thinking over to machines "
+echo_color "\033[0;90m" "in the hope that this would set them free,"
+echo_color "\033[0;90m" "but that only permitted "
+echo_color "\033[0;90m" "other men with machines to enslave them."
+
+# Aliases
+if [ "$(uname)" = "Linux" ]; then
+  alias open='xdg-open'
+fi
+alias c='clear'
+alias v='nvim'
+alias vim='nvim'
+alias ta='tmux a '
+alias ll='ls -alFh'
+alias l='ls -alFh'
+alias la='ls -A'
+
+# History (ash has limited support)
+export HISTSIZE=99999
+export HISTFILE="$HOME/.ash_history"
+
+# NVM (likely won’t work fully in iSH but preserved here)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+
+# Shell mode and prompt
+set -o vi
+
+# Minimal gray prompt with newline
+PS1='\n\033[0;90m(${PWD##*/}) \$ \033[0m'
+
+mount -t ios llama ./ios

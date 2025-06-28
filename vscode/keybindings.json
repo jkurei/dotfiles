@@ -1,0 +1,64 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "capslock", "command": "extension.vim_escape",
+        "when": "editorTextFocus && vim.active && !inDebugRepl" 
+    },
+    // {
+    //     "key": "shift+u",
+    //     "command": "redo",
+    //     "when": "editorTextFocus"
+    // },
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++
+    // cargo-culted from mac    
+
+  { "key": "ctrl+shift+s", "command": "eslint.executeAutofix" },
+  { "key": "shift+cmd+s", "command": "-workbench.action.files.saveAs" },
+  { "key": "ctrl+l", "command": "workbench.action.focusNextGroup" },
+  { "key": "ctrl+h", "command": "workbench.action.focusPreviousGroup" },
+  { "key": "ctrl+l", "command": "-notebook.centerActiveCell", "when": "notebookEditorFocused" },
+  { "key": "ctrl+l", "command": "-workbench.action.chat.newChat", "when": "chatIsEnabled && inChat" },
+  { "key": "ctrl+l", "command": "-extension.vim_navigateCtrlL", "when": "editorTextFocus && vim.active && vim.use<C-l> && !inDebugRepl" },
+
+  // { "key": "cmd+i", "command": "-editor.action.triggerSuggest", "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible" },
+
+  { "key": "shift+ctrl+space", "command": "workbench.action.showCommands" },
+  { "key": "shift+ctrl+space", "command": "-editor.action.triggerParameterHints", "when": "editorHasSignatureHelpProvider && editorTextFocus" },
+
+  { "key": "ctrl+k ctrl+enter",  "command": "workbench.action.unpinEditor",  "when": "activeEditorIsPinned"  },
+  { "key": "ctrl+k ctrl+enter",  "command": "workbench.action.pinEditor",    "when": "!activeEditorIsPinned" },
+  { "key": "ctrl+k shift+enter", "command": "-workbench.action.unpinEditor", "when": "activeEditorIsPinned"  },
+  {
+    "key": "ctrl+k shift+enter",
+    "command": "-workbench.action.pinEditor",
+    "when": "!activeEditorIsPinned"
+  },
+  {
+    "key": "ctrl+shift+s",
+    "command": "-workbench.action.files.saveAs"
+  },
+  {
+    "key": "ctrl+shift+s",
+    "command": "-workbench.action.files.saveLocalFile",
+    "when": "remoteFileDialogVisible"
+  },
+  {
+    "key": "ctrl+shift+b",
+    "command": "workbench.action.toggleAuxiliaryBar"
+  },
+  {
+    "key": "ctrl+alt+b",
+    "command": "-workbench.action.toggleAuxiliaryBar"
+  },
+  {
+    "key": "ctrl+shift+b",
+    "command": "-workbench.action.tasks.build",
+    "when": "taskCommandsRegistered"
+  }
+
+
+  // end of cargo-culted from mac    
+  // ++++++++++++++++++++++++++++++++++++++++++++++++
+
+]

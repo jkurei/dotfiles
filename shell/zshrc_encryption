@@ -1,0 +1,36 @@
+
+# aliases for encryption
+
+enc () { 
+  if [[ -n "$2" ]]; then 
+    OUT="$2";
+  else 
+    OUT="$1"".enc";
+  fi
+  openssl enc -aes-256-cbc -in "$1" -out "$OUT"; 
+};
+
+renc () { 
+  enc $1 $2;
+  rm $1;
+};
+  
+dec () { 
+  if [[ -n "$2" ]]; then 
+    OUT="$2";
+  elif [[ $1 =~ .*\.enc$ ]]; then
+    OUT=`basename $1 .enc`;
+  else 
+    OUT="$1".dec;
+  fi
+  openssl enc -d -aes-256-cbc -in "$1" -out "$OUT"; 
+};
+
+rdec() {
+  dec "$1" "$2";
+  rm "$1";
+}
+
+nenc() {
+  ts-node ~/dotfiles/bin/enc.ts $@;
+}
