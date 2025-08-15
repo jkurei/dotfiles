@@ -7,11 +7,11 @@
 [ -e ~/.bashrc ] && mv ~/.bashrc ~/.bashrc_original
 [ -e ~/.zshrc ] && rm ~/.zshrc
 
-ln -s ~/dotfiles/shell/ ~/.zshrc
-ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
-ln -s ~/dotfiles/zsh/zshrc_aliases ~/.zshrc_aliases
-ln -s ~/dotfiles/zsh/zshrc_encryption ~/.zshrc_encryption
-ln -s ~/dotfiles/zsh/zshrc_spaceship ~/.zshrc_spaceship
+ln -s ~/dotfiles/shell/bashrc ~/.bashrc
+ln -s ~/dotfiles/shell/zshrc ~/.zshrc
+ln -s ~/dotfiles/shell/zshrc_aliases ~/.zshrc_aliases
+ln -s ~/dotfiles/shell/zshrc_encryption ~/.zshrc_encryption
+ln -s ~/dotfiles/shell/zshrc_spaceship ~/.zshrc_spaceship
 
 mkdir -p ~/.tmux
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
