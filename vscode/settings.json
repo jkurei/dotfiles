@@ -205,11 +205,11 @@
   "chat.commandCenter.enabled": false,
   "window.menuBarVisibility": "toggle",
   "window.customTitleBarVisibility": "windowed",
-  "workbench.preferredHighContrastLightColorTheme": "Nord Deep",
   "terminal.integrated.defaultProfile.osx": "bash"
   , 
 
   "markdown-preview-enhanced.exportPDFPath": "chrome",
-  "markdown-preview-enhanced.enablePreviewZenMode": false
+  "markdown-preview-enhanced.enablePreviewZenMode": false,
+  "workbench.preferredHighContrastLightColorTheme": "Verdandi"
 
 }
